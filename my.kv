@@ -1,0 +1,132 @@
+<ListItemWithCheckbox>:
+
+    LeftCheckbox:
+        id:checkbox
+
+<Item>:
+    orientation: "vertical"
+
+    ScrollView:
+        MDList:
+            id: scroll
+
+root:
+    MDBottomNavigationItem:
+        name: "main"
+        text: "Main Screen"
+
+        BoxLayout:
+            orientation: "vertical"
+            spacing: 5
+            padding: 10
+            canvas:
+                Rectangle:
+                    source: "gradient_1.png"
+                    pos: self.pos
+                    size: self.size
+
+            MDLabel:
+                text: "Website Blocker"
+                halign: "center"
+                theme_text_color: "Primary"
+                theme_text_color: "Custom"
+                text_color: 0,0,0,.8
+                font_style: "H3"
+
+            Image:
+                source: "data/logo/kivy-icon-256.png"
+                size: self.texture_size
+
+
+            # Creating a Boxlayout to keep 2 button close to each other
+            BoxLayout:
+                orientation: "vertical"
+                spacing: 20
+                padding: 40
+
+                MDDropDownItem:
+                    id: drop_item
+                    pos_hint: {"center_x": .5, "center_y": .5}
+                    text: 'Website Type Selection'
+                    on_press: app.menu.open()
+
+                MDRectangleFlatButton:
+                    id: auto_subscription
+                    text: "Auto-Subscription"
+                    font_size: "24sp"
+                    increment_width: "164dp"
+                    theme_text_color: "Custom"
+                    text_color: 0,0,0,.8
+                    pos_hint: {"center_x": .5, "center_y": .5}
+                    on_press:
+                        app.auto_subscription_dialog()
+
+
+
+
+    MDBottomNavigationItem:
+        name: "second"
+        text: "Second Screen"
+
+        BoxLayout:
+            orientation: "vertical"
+            MDToolbar:
+                title: "Customizing Your Website Lists"
+                right_action_items: [["update", lambda x: app.refresh_data()]]
+
+            MDGridLayout:
+                rows: 3
+                spacing: 10
+                padding: 10
+
+                MDBoxLayout:
+                    adaptive_height: True
+                    orientation: "horizontal"
+                    spacing: 20
+                    padding: 5
+                    MDTextField:
+                        id: website_input
+                        hint_text: "Enter Your Website"
+                        helper_text: "This will disappear when you enter"
+                        helper_text_mode: "on_focus"
+
+                    MDFloatingActionButton:
+                        icon: "file-document-box-search"
+                        on_press:
+                            app.searching_database()
+
+                ScrollView:
+
+                    MDList:
+                        id: container
+
+                MDBoxLayout:
+                    adaptive_height: True
+                    orientation: "vertical"
+                    spacing: 10
+                    padding: 10
+
+                    MDRectangleFlatButton:
+                        text: "Subscribe"
+                        text_theme_color: "primary"
+                        pos_hint: {"center_x": .5, "center_y": .5}
+                        font_size: "18sp"
+                        increment_width: root.width
+                        on_press:
+                            app.subscribe_connect_adding_dialog()
+
+
+                    MDRectangleFlatButton:
+                        text: "Remove"
+                        font_size: "18sp"
+                        text_theme_color: "primary"
+                        pos_hint: {"center_x": .5, "center_y": .5}
+                        increment_width: root.width
+                        on_press:
+                            app.Unblocking_Removing_List_Website_Calling_Dialog()
+
+
+
+
+
+

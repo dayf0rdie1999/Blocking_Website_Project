@@ -1,0 +1,134 @@
+<ListItemWithCheckbox>:
+    checkbox: checkbox
+
+    LeftCheckbox:
+        id: checkbox
+        on_active: app.on_checkbox_active(*args)
+
+<MainScreen>:
+    auto_Subscription: auto_Subscription
+
+    BoxLayout:
+        orientation: "vertical"
+        spacing: 5
+        padding: 10
+        canvas:
+            Rectangle:
+                source: "ColorFul.jpg"
+                pos: self.pos
+                size: self.size
+
+        MDLabel:
+            text: "Website Blocker"
+            halign: "center"
+            theme_text_color: "Primary"
+            theme_text_color: "Custom"
+            text_color: 1,1,1,1
+            font_style: "H3"
+
+        Image:
+            source: "data/logo/kivy-icon-256.png"
+            size: self.texture_size
+
+
+        # Creating a Boxlayout to keep 2 button close to each other
+        BoxLayout:
+            orientation: "vertical"
+            spacing: 20
+            padding: 40
+
+            MDRectangleFlatButton:
+                id: auto_Subscription
+                text: "Auto-Subscription"
+                font_size: "24sp"
+                increment_width: "164dp"
+                theme_text_color: "Custom"
+                text_color: 1,1,1,1
+                pos_hint: {"center_x": .5, "center_y": .5}
+                on_press: app.menu.open()
+
+
+            MDRectangleFlatButton:
+                text: "Customized Subscription"
+                font_size: "24sp"
+                increment_width: "164dp"
+                theme_text_color: "Custom"
+                text_color: 1,1,1,1
+                pos_hint: {"center_x": .5, "center_y": .5}
+                on_press:
+                    root.manager.current = 'custom'
+
+<CustomizationScreen>:
+    website_input: website_input
+    container: container
+
+    BoxLayout:
+        orientation: "vertical"
+
+        MDToolbar:
+            title: "Customization"
+            left_action_items: [["keyboard-return", lambda x: app.change_screen("main")]]
+
+        MDGridLayout:
+            rows: 3
+            spacing: 10
+            padding: 10
+
+            MDBoxLayout:
+                adaptive_height: True
+                orientation: "horizontal"
+                spacing: 20
+                padding: 5
+                MDTextField:
+                    id: website_input
+                    hint_text: "Enter Your Website"
+                    helper_text: "This will disappear when you enter"
+                    helper_text_mode: "on_focus"
+
+                MDFloatingActionButton:
+                    icon: "file-document-box-search"
+                    on_press: app.search_data()
+
+            ScrollView:
+
+                MDList:
+                    id: container
+
+            MDStackLayout:
+                adaptive_height: True
+                orientation: "rl-bt"
+                spacing: 20
+
+                MDRectangleFlatButton:
+                    text: "Subscribe"
+                    font_size: "18sp"
+                    increment_width: "164dp"
+
+
+                MDRectangleFlatButton:
+                    text: "Remove"
+                    font_size: "18sp"
+                    increment_width: "164dp"
+                    on_press: app.Removing_Unblocking_Data_Using_CheckBox()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
